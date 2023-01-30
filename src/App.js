@@ -1,6 +1,8 @@
-function App() {
+import Navbar from "./Navbar";
+
+function App(props) {
   return (
-    <h1>App</h1>
+    <Navbar/>
   );
 }
 
