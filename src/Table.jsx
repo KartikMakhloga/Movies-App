@@ -58,9 +58,11 @@ class Table extends React.Component {
                   <td>{el.stock}</td>
                   <td>{el.rate}</td>
                   <td>Like</td>
-                  <button type="button" class="btn btn-outline-danger m-1">
-                    Delete
-                  </button>
+                  <td>
+                    <button type="button" class="btn btn-danger">
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
