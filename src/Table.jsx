@@ -56,7 +56,17 @@ class Table extends React.Component {
                   <td>{el.dailyRentalRate}</td>
                   <td>Like</td>
                   <td>
-                    <button type="button" class="btn btn-danger">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onClick={() => {
+                        let allMovies = this.state.allMovies;
+                        allMovies = allMovies.filter((eli) => {
+                          return eli._id != el._id;
+                        });
+                        this.setState({ allMovies: allMovies });
+                      }}
+                    >
                       Delete
                     </button>
                   </td>
@@ -68,30 +78,39 @@ class Table extends React.Component {
 
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item" onClick={()=>{
-              if(this.state.currPage>1)
-              this.setState({currPage:this.state.currPage - 1})
-            }}>
+            <li
+              class="page-item"
+              onClick={() => {
+                if (this.state.currPage > 1)
+                  this.setState({ currPage: this.state.currPage - 1 });
+              }}
+            >
               <a class="page-link" href="#">
                 Previous
               </a>
             </li>
 
-            {arr.map( (el)=> {
+            {arr.map((el) => {
               return (
-                <li class="page-item" onClick={()=>{
-                  this.setState({currPage: el})
-                }}>
+                <li
+                  class="page-item"
+                  onClick={() => {
+                    this.setState({ currPage: el });
+                  }}
+                >
                   <a class="page-link" href="#">
                     {el}
                   </a>
                 </li>
               );
             })}
-            <li class="page-item" onClick={()=>{
-              if(this.state.currPage<arr.length)
-              this.setState({currPage:this.state.currPage + 1})
-            }}>
+            <li
+              class="page-item"
+              onClick={() => {
+                if (this.state.currPage < numberOfPages)
+                  this.setState({ currPage: this.state.currPage + 1 });
+              }}
+            >
               <a class="page-link" href="#">
                 Next
               </a>
