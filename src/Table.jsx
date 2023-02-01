@@ -3,6 +3,7 @@ import React from "react";
 class Table extends React.Component {
   state = {
     allMovies: [],
+    currPage: 1,
   };
 
   componentDidMount() {
@@ -23,6 +24,15 @@ class Table extends React.Component {
     for (let i = 1; i <= numberOfPages; i++) {
       arr.push(i);
     }
+
+    let starting = (this.state.currPage - 1) * 5;
+    let ending = this.state.currPage * 5 - 1;
+
+    let moviesToDisplay = this.state.allMovies.slice(
+      starting,
+      Math.min(ending, this.state.allMovies.length - 1) + 1
+    );
+
     return (
       <div>
         <table class="table">
@@ -37,9 +47,9 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.allMovies.map((el) => {
+            {moviesToDisplay.map((el) => {
               return (
-                <tr>
+                <tr key={el._id}>
                   <td>{el.title}</td>
                   <td>{el.genre.name}</td>
                   <td>{el.numberInStock}</td>
@@ -58,22 +68,30 @@ class Table extends React.Component {
 
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item">
+            <li class="page-item" onClick={()=>{
+              if(this.state.currPage>1)
+              this.setState({currPage:this.state.currPage - 1})
+            }}>
               <a class="page-link" href="#">
                 Previous
               </a>
             </li>
 
-            {arr.map(function (el) {
+            {arr.map( (el)=> {
               return (
-                <li class="page-item">
+                <li class="page-item" onClick={()=>{
+                  this.setState({currPage: el})
+                }}>
                   <a class="page-link" href="#">
                     {el}
                   </a>
                 </li>
               );
             })}
-            <li class="page-item">
+            <li class="page-item" onClick={()=>{
+              if(this.state.currPage<arr.length)
+              this.setState({currPage:this.state.currPage + 1})
+            }}>
               <a class="page-link" href="#">
                 Next
               </a>
