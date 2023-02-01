@@ -54,7 +54,19 @@ class Table extends React.Component {
                   <td>{el.genre.name}</td>
                   <td>{el.numberInStock}</td>
                   <td>{el.dailyRentalRate}</td>
-                  <td>Like</td>
+                  <td
+                    onClick={() => {
+                      let allMovies = this.state.allMovies;
+                      let index = allMovies.findIndex((e) => e._id == el._id);
+                      if(!allMovies[index].liked)
+                      allMovies[index].liked = true;
+                      else
+                      allMovies[index].liked = false;
+                      this.setState({ allMovies: allMovies });
+                    }}
+                  >
+                    {el.liked ? "Liked!" : "Like"}
+                  </td>
                   <td>
                     <button
                       type="button"
