@@ -7,10 +7,15 @@ import React from "react";
 class App extends React.Component {
   state = {
     noOfMovies: 0,
+    searchString:"",
   };
 
   recieveMovieData = (number)=>{
       this.setState({noOfMovies:number})
+  }
+
+  recieveSearchParam = (param)=>{
+      this.setState({searchString:param})
   }
 
   render() {
@@ -25,11 +30,11 @@ class App extends React.Component {
             <div className="row">
               <div className="row">
                 <div className="col-8">
-                  <Search noOfMovies = {this.state.noOfMovies}/>
+                  <Search noOfMovies = {this.state.noOfMovies}  received = {this.recieveSearchParam}/>
                 </div>
               </div>
             </div>
-            <Table sendData = {this.recieveMovieData}/>
+            <Table sendData = {this.recieveMovieData} searchString = {this.state.searchString}/>
           </div>
         </div>
       </React.Fragment>

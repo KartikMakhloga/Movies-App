@@ -1,7 +1,9 @@
 import React from "react";
 
 class Search extends React.Component {
-  state = {};
+  state = {
+    currSearchString: "",
+  };
 
   render() {
     return (
@@ -14,12 +16,14 @@ class Search extends React.Component {
           <input
             type="text"
             class="form-control"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="basic-addon1"
+            placeholder="Search..."
+            onChange={(e) => {
+              this.setState({ currSearchString: e.currentTarget.value });
+              this.props.received(this.state.currSearchString)
+            }}
           />
         </div>
-      </div> 
+      </div>
     );
   }
 }
