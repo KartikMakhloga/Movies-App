@@ -15,7 +15,10 @@ class Table extends React.Component {
       })
       .then((json) => {
         this.setState({ allMovies: json });
+        this.props.sendData(json.length);
       });
+
+
   }
 
   render() {
@@ -76,6 +79,7 @@ class Table extends React.Component {
                           return eli._id != el._id;
                         });
                         this.setState({ allMovies: allMovies });
+                        this.props.sendData(allMovies.length);
                       }}
                     >
                       Delete
