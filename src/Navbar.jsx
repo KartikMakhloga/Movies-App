@@ -16,7 +16,7 @@ function Navbar() {
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <Link class="navbar-brand" to="/">
+        <Link class="navbar-brand" to="#">
           MovieRentals
         </Link>
         <button
