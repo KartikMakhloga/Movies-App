@@ -20,9 +20,16 @@ class Category extends React.Component {
   render() {
     return (
       <ul class="list-group">
+         <li class="list-group-item" key={"allgenre"}  onClick={()=>{
+              this.props.receiveCurrGenre("All Genre")
+            }}>
+              All Genre
+            </li>
         {this.state.allGenre.map((el) => {
           return (
-            <li class="list-group-item" key={el._id}>
+            <li class="list-group-item" key={el._id} onClick={()=>{
+              this.props.receiveCurrGenre(el.name)
+            }}>
               {el.name}
             </li>
           );
