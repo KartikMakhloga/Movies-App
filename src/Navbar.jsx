@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  let allNavItems = document.querySelectorAll(".nav-link");
+  for (let i = 0; i < allNavItems.length; i++) {
+    allNavItems[i].addEventListener("click", function (e) {
+      for (let j = 0; j < allNavItems.length; j++) {
+        allNavItems[j].classList.remove("active");
+      }
+      e.currentTarget.classList.add("active");
+    });
+  }
   return (
     <nav
       class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark"
@@ -39,7 +48,9 @@ function Navbar() {
               </Link>
             </li>
             <li class="nav-item">
-              <Link class="nav-link" to="/login">Login</Link>
+              <Link class="nav-link" to="/login">
+                Login
+              </Link>
             </li>
           </ul>
         </div>
